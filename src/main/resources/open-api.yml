@@ -1,0 +1,11 @@
+openApi:
+  kakao:
+    baseUri: https://dapi.kakao.com
+    auth: "KakaoAK a4b95009e69e143072311460ec557627"
+    searchBlogUrl: /v2/search/blog
+  naver:
+    baseUri: https://openapi.naver.com
+    auth:
+      id: lTByBIUtNDzBhYACvLp1
+      secret: BcQRaNanGX
+    searchBlogUrl: /v1/search/blog
