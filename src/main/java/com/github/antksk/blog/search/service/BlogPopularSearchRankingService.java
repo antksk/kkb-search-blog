@@ -36,9 +36,9 @@ public class BlogPopularSearchRankingService {
     }
 
     long incrementWordCount(String word){
-        Long count = getCurrentWordCount(word);
+        long count = getCurrentWordCount(word);
         getWordCache().put(word, ++count);
-        log.debug("word : {}, count: {}", word, count);
+        log.info("## cache time => word : {}, count: {}", word, count);
         return count;
     }
 

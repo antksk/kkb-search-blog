@@ -21,7 +21,7 @@ public class BlogSearchService {
     public BlogSearchResults search(BlogSearchRequest blogSearchRequest){
         log.debug("mappingBlogSearchApiClient : {}", mappingBlogSearchApiClient);
         String key = fromBlogSourceToSearchApiClientKey(blogSearchRequest);
-        log.debug("key : {}", key);
+        log.info("## mappingBlogSearchApiClient key : {}", key);
         var blogSearchApiClient = mappingBlogSearchApiClient.get(key);
         var blogSearchResults = blogSearchApiClient.search(blogSearchRequest.toParam());
 

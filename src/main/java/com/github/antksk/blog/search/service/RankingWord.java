@@ -1,9 +1,9 @@
 package com.github.antksk.blog.search.service;
 
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 
 import java.util.Optional;
+import java.util.OptionalLong;
 
 @Getter
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
@@ -13,7 +13,7 @@ public final class RankingWord {
     private final String word;
     private final long count;
 
-    private static RankingWord empty = new RankingWord("", 0L);
+    private static final RankingWord empty = new RankingWord("", 0L);
 
 
     static RankingWord from(String word, long count) {
@@ -29,10 +29,10 @@ public final class RankingWord {
         return new RankingWord(word, count);
     }
 
-    private static Long objToLongValue(Object value) {
+    private static long objToLongValue(Object value) {
         return Optional.ofNullable(value)
                 .filter(o -> o instanceof Long)
-                .map(o -> ((Long) o).longValue())
+                .map(o -> (Long) o)
                 .orElse(0L);
     }
 
