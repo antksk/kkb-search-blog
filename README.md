@@ -17,12 +17,11 @@
 ### 서비스 이용 방법
 
 ```bash
-# 1. kkb-search-blog(https://github.com/antksk/kkb-search-blog) > kakaobank.jar 다운로드
 
 java -jar kakaobank.jar
 
 ```
-#### [kakaobank.jar 다운로드 링크](https://github.com/antksk/kkb-search-blog/blob/main/kakaobank.jar)
+#### [kakaobank.jar 다운로드 링크](https://drive.google.com/file/d/1bzR-ULHVhSZcnbCjYg41hqKwUMy2vyAj/view?usp=share_link)
 
 아래의 링크를 사용하여 서비스 접속 가능
 - [rest-docs 화면](http://localhost:8080/static/docs/index.html)
