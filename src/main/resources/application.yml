@@ -37,7 +37,8 @@ spring:
   sql:
     init:
       data-locations: classpath:sql/sample-ranking-data.sql
-
+  mvc:
+    static-path-pattern: /static/**
 feign:
   client:
     config:
