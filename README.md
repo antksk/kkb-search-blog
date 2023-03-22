@@ -33,5 +33,5 @@ Spring에서 제공하는 Page 클래스를 통해서 대응하였습니다.
 ##### [인기검 색어 기능]
 - 구현 제약사항으로 H2 DB를 사용해야 하기 때문에 인기검색어 count 수를 계산할 때 insert, update가 빈번하게 발생할 것으로 예상되어, [caffeine-cache](https://github.com/ben-manes/caffeine) 를 사용하여, count수를 계산한하고 적절한 시기에 DB에 update될수 있도록 구성하였습니다. 
 - 메인 서비스는 블로그 검색이기 때문에 메인 thread들은 open-api의 결과를 취합하여 response하는데 사용하고, Spring Event, Cache 를 활용하여 인기 검색어 count 취합 비동기로 h2디비에 저장하는 방식을 채택하였습니다. (이 방식으로 처리하게 되면 인기 검색어를 취합하는데 실패 하더라도 메인 서비스에는 영향을 받지 않을 것으로 예상됩니다.)
-- caffeine cache는 글로벌 캐시가 아니기 때문에 동시성 이슈가 발생할수 있습니다. 그래서, db에 저장 할때, ```Transactional``` 설정과 ```spring.jpa.open-in-view: false```으로 영속성 영역을 제한으로 DB에서 동기화 될수 있도록 고민하였습니다. 이외에도 다양한 이슈로 동시성 문제가 발샐할 수 있어 NoSQL 서버를를 활용한 방법으로 개선의 여지가 남아 있다고 생각합니다. 이를 위해서, 코드 레벨에서 ```BlogSearchEventHandler```를 통해서 이벤트 방식으로 분리해 놓았습니다.
+- caffeine cache는 글로벌 캐시가 아니기 때문에 동시성 이슈가 발생할수 있습니다. 그래서, db에 저장 할때, ```Transactional``` 설정과 ```spring.jpa.open-in-view: false```으로 영속성 영역을 제한하고 Entity에 Version를 주어 낙관적 락(```@Lock(LockModeType.NONE)```)을 적용하여, DB에서 동기화 될수 있도록 고민하였습니다. 이외에도 다양한 이슈로 동시성 문제가 발샐할 수 있어 NoSQL 서버를를 활용한 방법으로 개선의 여지가 남아 있다고 생각합니다. 이를 위해서, 코드 레벨에서 ```BlogSearchEventHandler```를 통해서 이벤트 방식으로 분리해 놓았습니다.
 <img width="2436" alt="image" src="https://user-images.githubusercontent.com/1481137/226825309-179f2274-2d89-4fa0-bdb6-3e1dbcb35c15.png">
