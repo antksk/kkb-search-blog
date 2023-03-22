@@ -1,0 +1,16 @@
+= KKB 사전 프로젝트
+http://github.com/antksk/kkb-search-blog
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs // 문서에 표기되는 코드들의 하이라이팅을 highlightjs를 사용
+:toc: left // toc (Table Of Contents)를 문서의 좌측에 두기
+:toclevels: 2
+:sectlinks:
+
+== Blog Search API
+
+=== Blog 검색
+operation::blog-search[snippets='http-request,request-parameters,http-response,response-fields']
+
+=== Blog 인기검색어
+operation::blog-ranking[snippets='http-response,response-fields']

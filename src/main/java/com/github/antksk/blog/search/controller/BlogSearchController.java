@@ -2,7 +2,6 @@ package com.github.antksk.blog.search.controller;
 
 import com.github.antksk.blog.search.service.BlogSearchService;
 import com.github.antksk.blog.search.service.external.BlogSearchResult;
-import com.github.antksk.config.KKB_Global_Constants;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
@@ -15,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Size;
 
-import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.*;
+import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.fromRequest;
 import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_BLOG_SEARCH_SORT_MODE;
 import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_BLOG_SOURCE;
 
