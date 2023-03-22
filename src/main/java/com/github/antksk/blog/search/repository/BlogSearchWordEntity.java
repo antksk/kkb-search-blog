@@ -2,10 +2,7 @@ package com.github.antksk.blog.search.repository;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 
 @ToString
@@ -14,7 +11,7 @@ import javax.persistence.Id;
 @Entity(name = "t_blog_search_word")
 public class BlogSearchWordEntity extends CreateAndModifyDateTime {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "seq")
     private Long id;
 

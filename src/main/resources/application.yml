@@ -19,7 +19,7 @@ spring:
         max-page-size: 50
   datasource:
 #    jdbc-url: jdbc:h2:~/test-h2-db;AUTO_SERVER=true
-    jdbc-url: jdbc:h2:mem:test-h2-db
+    jdbc-url: jdbc:h2:mem:test-h2-db;MODE=MySQL;
     driver-class-name: org.h2.Driver
     hikari:
       maximum-pool-size: 30             # (default : 10)최대 pool size,
@@ -56,5 +56,5 @@ server:
 
 logging:
   level:
-    root: INFO
-    com.github.antksk: DEBUG
+    root: WARN
+    com.github.antksk: INFO
