@@ -2,6 +2,7 @@ package com.github.antksk.blog.search.repository;
 
 import lombok.*;
 
+
 import javax.persistence.*;
 
 import static com.github.antksk.config.KKB_Global_Constants.TABLE_NAME_BLOG_POPULAR_SEARCH_WORD;
@@ -13,14 +14,13 @@ import static com.github.antksk.config.KKB_Global_Constants.TABLE_NAME_BLOG_POPU
 @Entity(name = TABLE_NAME_BLOG_POPULAR_SEARCH_WORD)
 public class BlogSearchWordEntity extends CreateAndModifyDateTime {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "seq")
-    private Long id;
-
-    @Column(name = "word", nullable = false, length = 50)
+    @Column(nullable = false, length = 30)
     private String word;
 
     private Long count;
+
+    @Version
+    private Long version;
 
     public void modifyCount(long count){
         if(this.count < count) {
@@ -29,9 +29,10 @@ public class BlogSearchWordEntity extends CreateAndModifyDateTime {
     }
 
     @Builder
-    BlogSearchWordEntity(Long id, String word, Long count) {
-        this.id = id;
+    BlogSearchWordEntity(String word, Long count, Long version) {
+//        this.id = id;
         this.word = word;
         this.count = count;
+        this.version = version;
     }
 }

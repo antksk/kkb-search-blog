@@ -1,13 +1,13 @@
-insert into t_blog_search_word(word, count, created_date,modified_date)
+insert into t_blog_search_word(word, count, created_date,modified_date, version)
 values
-       ('test', 10, current_timestamp, current_timestamp),
-       ('테스트', 5, current_timestamp, current_timestamp),
-       ('대한민국', 7, current_timestamp, current_timestamp),
-       ('학교', 3, current_timestamp, current_timestamp),
-       ('etf', 1, current_timestamp, current_timestamp),
-       ('연금저축', 9, current_timestamp, current_timestamp),
-       ('카카오', 3, current_timestamp, current_timestamp),
-       ('뱅크', 1, current_timestamp, current_timestamp),
-       ('친구', 4, current_timestamp, current_timestamp),
-       ('날씨', 5, current_timestamp, current_timestamp),
-       ('뉴스', 2, current_timestamp, current_timestamp);
+       ('test', 10, current_timestamp, current_timestamp, 0),
+       ('abc', 5, current_timestamp, current_timestamp, 0),
+       ('black', 7, current_timestamp, current_timestamp, 0),
+       ('school', 3, current_timestamp, current_timestamp, 0),
+       ('etf', 1, current_timestamp, current_timestamp, 0),
+       ('show', 9, current_timestamp, current_timestamp, 0),
+       ('kakao', 3, current_timestamp, current_timestamp, 0),
+       ('naver', 1, current_timestamp, current_timestamp, 0),
+       ('ft', 4, current_timestamp, current_timestamp, 0),
+       ('news', 5, current_timestamp, current_timestamp, 0),
+       ('a123', 2, current_timestamp, current_timestamp, 0);

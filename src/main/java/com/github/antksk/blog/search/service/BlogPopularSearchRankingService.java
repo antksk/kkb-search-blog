@@ -7,13 +7,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Sort;
+import org.springframework.orm.ObjectOptimisticLockingFailureException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
-import static com.github.antksk.config.KKB_Global_Constants.*;
+import static com.github.antksk.config.KKB_Global_Constants.BLOG_POPULAR_SEARCH_WORD;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 @Slf4j
@@ -44,24 +45,29 @@ public class BlogPopularSearchRankingService {
     @Transactional
     void storedRanking(RankingWord newRankingWord) {
 
-        String word = newRankingWord.getWord();
-        long count = newRankingWord.getCount();
+        try {
+            String word = newRankingWord.getWord();
+            long count = newRankingWord.getCount();
 
-        BlogSearchWordEntity wordEntity = Optional.ofNullable(blogSearchKeywordRepository.findByWord(word))
-                .orElse(BlogSearchWordEntity.builder()
-                        .word(word)
-                        .count(count)
-                        .build());
+            BlogSearchWordEntity wordEntity = Optional.ofNullable(blogSearchKeywordRepository.findByWord(word))
+                    .orElse(BlogSearchWordEntity.builder()
+                            .word(word)
+                            .count(count)
+                            .build());
 
-        wordEntity.modifyCount(count);
+            wordEntity.modifyCount(count);
 
-        blogSearchKeywordRepository.save(wordEntity);
+            blogSearchKeywordRepository.save(wordEntity);
+        }catch (Exception e){
+            log.error("count concurrency : ", e);
+        }
     }
 
     @Transactional(readOnly = true)
     public List<RankingWord> getRankingWords(){
         return blogSearchKeywordRepository.findTop10By(Sort.by(Sort.Order.desc("count"), Sort.Order.desc("word")))
                 .stream()
+                .peek(e->log.debug("{}", e))
                 .map(e->RankingWord.from(e.getWord(), e.getCount()))
                 .collect(toUnmodifiableList());
     }
