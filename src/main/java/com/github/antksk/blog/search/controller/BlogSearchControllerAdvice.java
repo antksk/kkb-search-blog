@@ -22,6 +22,6 @@ class BlogSearchControllerAdvice {
         log.error("ExceptionHandler -> Exception", e);
         Link link = linkTo(methodOn(BlogSearchController.class)
                 .search("", "kakao",  PageRequest.of(1,10))).withSelfRel();
-        return RepresentationModel.of(Map.of("error", e.getLocalizedMessage()), Set.of(link));
+        return RepresentationModel.of(Map.of("error", "시스템 오류가 발생하였습니다."), Set.of(link));
     }
 }

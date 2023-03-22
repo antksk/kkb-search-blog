@@ -24,7 +24,7 @@ public class BlogSearchService {
         log.info("## mappingBlogSearchApiClient key : {}", key);
         var blogSearchApiClient = mappingBlogSearchApiClient.get(key);
         var blogSearchResults = blogSearchApiClient.search(blogSearchRequest.toParam());
-
+        // [EVENT] 인기 검색어 취합 용
         applicationEventPublisher.publishEvent(blogSearchRequest);
         return blogSearchResults;
     }
@@ -34,6 +34,6 @@ public class BlogSearchService {
                 .stream()
                 .filter(blogSearchRequest::hasBlogSearchApiClientPackageName)
                 .findAny()
-                .orElseThrow(() -> new NoSuchElementException("BlogSource에서 search api를 찾지 못함"));
+                .orElseThrow(() -> new NoSuchElementException("BlogSource에서 search api를 찾지 못하였습니다."));
     }
 }

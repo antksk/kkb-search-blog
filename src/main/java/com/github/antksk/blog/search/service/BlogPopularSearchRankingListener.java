@@ -25,6 +25,7 @@ public class BlogPopularSearchRankingListener implements RemovalListener<Object,
     public void onRemoval(@Nullable Object key, @Nullable Object value, @NonNull RemovalCause cause) {
         log.info("## cache remove cause : {}", cause);
         if (rankingCoverage.contains(cause)) {
+            // [EVENT] 캐시에 저장된 인기검색에 count 정보를 DB와 동기화
             applicationEventPublisher.publishEvent(RankingWord.fromCache(key, value));
         }
     }
