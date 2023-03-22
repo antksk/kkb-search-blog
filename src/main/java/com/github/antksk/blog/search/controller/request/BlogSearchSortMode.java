@@ -1,14 +1,15 @@
 package com.github.antksk.blog.search.controller.request;
 
+import com.github.antksk.config.KKB_Global_Constants;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Map;
 
-import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.DEFAULT_BLOG_SEARCH_SORT_MODE;
 import static com.github.antksk.blog.search.controller.request.BlogSource.kakao;
 import static com.github.antksk.blog.search.controller.request.BlogSource.naver;
 import static com.github.antksk.blog.search.controller.request.GeneralEnum.enumsToMap;
+import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_BLOG_SEARCH_SORT_MODE;
 
 @Getter
 @RequiredArgsConstructor

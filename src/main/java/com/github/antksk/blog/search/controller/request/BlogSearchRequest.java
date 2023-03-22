@@ -12,13 +12,12 @@ import java.util.Map;
 
 import static com.github.antksk.blog.search.controller.request.BlogSearchSortMode.accuracy;
 import static com.github.antksk.blog.search.controller.request.BlogSource.kakao;
+import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_BLOG_SEARCH_SORT_MODE;
 
 @Slf4j
 @ToString
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
 public final class BlogSearchRequest {
-    public static final String DEFAULT_BLOG_SOURCE = "kakao";
-    public static final String DEFAULT_BLOG_SEARCH_SORT_MODE = "accuracy";
 
     @Getter
     private final String query;

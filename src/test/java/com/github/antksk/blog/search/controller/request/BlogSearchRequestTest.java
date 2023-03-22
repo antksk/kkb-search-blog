@@ -1,5 +1,6 @@
 package com.github.antksk.blog.search.controller.request;
 
+import com.github.antksk.config.KKB_Global_Constants;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,10 +9,8 @@ import org.springframework.data.domain.Sort;
 
 import java.util.Map;
 
-import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.DEFAULT_BLOG_SEARCH_SORT_MODE;
 import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.fromRequest;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.springframework.data.domain.PageRequest.ofSize;
 
 @DisplayName("블로그 검색 연동시 여러 외부 api연동 할 수 있도록 구성")
@@ -43,7 +42,7 @@ class BlogSearchRequestTest {
          * page	Integer	결과 페이지 번호, 1~50 사이의 값, 기본 값 1	X
          * size	Integer	한 페이지에 보여질 문서 수, 1~50 사이의 값, 기본 값 10	X
          */
-        assertRequestEqOpenApiParam("kakao", "page", "size", query, page, size, DEFAULT_BLOG_SEARCH_SORT_MODE);
+        assertRequestEqOpenApiParam("kakao", "page", "size", query, page, size, KKB_Global_Constants.DEFAULT_BLOG_SEARCH_SORT_MODE);
         /**
          * [NAVER Parameter 정보]
          * query	String	Y	검색어. UTF-8로 인코딩되어야 합니다.
@@ -65,7 +64,7 @@ class BlogSearchRequestTest {
 
         Map<String, Object> requestToApiParam = fromRequest(query, source, PageRequest.of(page, size, Sort.by(Sort.Order.by(sortMode))))
                 .toParam();
-        Assertions.assertTrue(openApiParam.equals(requestToApiParam));
+        assertEquals(openApiParam, requestToApiParam);
     }
 
 

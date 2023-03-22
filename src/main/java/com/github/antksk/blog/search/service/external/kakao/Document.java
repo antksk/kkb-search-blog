@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_DATE_TIME_FORMATTER;
+
 @Slf4j
 @ToString
 @Getter
@@ -33,10 +35,9 @@ final class Document implements BlogSearchResult {
     }
 
     private static final DateTimeFormatter fromFormatter = DateTimeFormatter.ISO_OFFSET_DATE_TIME;
-    private static final DateTimeFormatter toFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
     public String getPostDate(){
             return LocalDate.parse(postDate, fromFormatter)
-                    .format(toFormatter);
+                    .format(DEFAULT_DATE_TIME_FORMATTER);
     }
 
 }

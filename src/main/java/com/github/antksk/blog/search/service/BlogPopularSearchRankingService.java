@@ -2,7 +2,6 @@ package com.github.antksk.blog.search.service;
 
 import com.github.antksk.blog.search.repository.BlogSearchKeywordRepository;
 import com.github.antksk.blog.search.repository.BlogSearchWordEntity;
-import com.github.antksk.config.CacheType;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.Cache;
@@ -14,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import static com.github.antksk.config.KKB_Global_Constants.*;
 import static java.util.stream.Collectors.toUnmodifiableList;
 
 @Slf4j
@@ -25,8 +25,7 @@ public class BlogPopularSearchRankingService {
     private final BlogSearchKeywordRepository blogSearchKeywordRepository;
 
     private Cache getWordCache(){
-        var cacheName = CacheType.Constants.BLOG_POPULAR_SEARCH_WORD;
-        return cacheManager.getCache(cacheName);
+        return cacheManager.getCache(BLOG_POPULAR_SEARCH_WORD);
     }
 
     long getCurrentWordCount(String word){

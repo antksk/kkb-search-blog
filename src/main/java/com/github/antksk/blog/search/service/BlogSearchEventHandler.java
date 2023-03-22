@@ -27,8 +27,10 @@ class BlogSearchEventHandler {
         if(rankingWord.isNotEmpty()) {
             log.info("## onBlogPopularSearchRankingWord ##: {}", rankingWord);
             long currentWordCount = blogPopularSearchRankingService.getCurrentWordCount(rankingWord.getWord());
-            blogPopularSearchRankingService.storedRanking(rankingWord.newRankingWord(currentWordCount));
-            log.info("## db time => word : {}, cc :{}, rc:{}", rankingWord.getWord(), currentWordCount, rankingWord.getCount());
+            RankingWord newRankingWord = rankingWord.newRankingWord(currentWordCount);
+            blogPopularSearchRankingService.storedRanking(newRankingWord);
+            log.info("## db time => word : {}, real count : {}, cc :{}, rc:{}",
+                    rankingWord.getWord(), newRankingWord.getCount(), currentWordCount, rankingWord.getCount());
         }
     }
 }

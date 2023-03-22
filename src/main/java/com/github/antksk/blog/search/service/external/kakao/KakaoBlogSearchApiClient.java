@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.Map;
 
-import static com.github.antksk.blog.search.controller.request.BlogSearchRequest.DEFAULT_BLOG_SOURCE;
+import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_BLOG_SOURCE;
 
 @FeignClient(
         name = "kakaoBlogSearchApiClient",

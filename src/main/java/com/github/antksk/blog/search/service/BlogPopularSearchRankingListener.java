@@ -9,14 +9,23 @@ import org.checkerframework.checker.nullness.qual.Nullable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
+import java.util.Set;
+
+import static com.github.benmanes.caffeine.cache.RemovalCause.EXPIRED;
+import static com.github.benmanes.caffeine.cache.RemovalCause.REPLACED;
+
 @Slf4j
 @RequiredArgsConstructor
 @Component
 public class BlogPopularSearchRankingListener implements RemovalListener<Object, Object> {
     private final ApplicationEventPublisher applicationEventPublisher;
 
+    private static final Set<RemovalCause> rankingCoverage = Set.of(REPLACED, EXPIRED);
     @Override
     public void onRemoval(@Nullable Object key, @Nullable Object value, @NonNull RemovalCause cause) {
-        applicationEventPublisher.publishEvent(RankingWord.fromCache(key,value));
+        log.info("## cache remove cause : {}", cause);
+        if (rankingCoverage.contains(cause)) {
+            applicationEventPublisher.publishEvent(RankingWord.fromCache(key, value));
+        }
     }
 }

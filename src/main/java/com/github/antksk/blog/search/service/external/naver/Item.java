@@ -7,7 +7,8 @@ import com.github.antksk.blog.search.service.external.BlogSearchResult;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+
+import static com.github.antksk.config.KKB_Global_Constants.DEFAULT_DATE_TIME_FORMATTER;
 
 @ToString
 @Getter
@@ -21,7 +22,6 @@ final class Item implements BlogSearchResult {
     private final String postDate;
 
 
-    private static final DateTimeFormatter toFormatter = DateTimeFormatter.ofPattern("yyyy.MM.dd");
     @JsonCreator
     static Item fromJson(
             @JsonProperty("bloggername") String blogName,
@@ -33,6 +33,6 @@ final class Item implements BlogSearchResult {
             @JsonProperty("postdate") LocalDate postDate
 
     ) {
-        return new Item(blogName, contents, title, url, postDate.format(toFormatter));
+        return new Item(blogName, contents, title, url, postDate.format(DEFAULT_DATE_TIME_FORMATTER));
     }
 }

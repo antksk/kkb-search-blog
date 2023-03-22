@@ -4,11 +4,13 @@ import lombok.*;
 
 import javax.persistence.*;
 
+import static com.github.antksk.config.KKB_Global_Constants.TABLE_NAME_BLOG_POPULAR_SEARCH_WORD;
+
 
 @ToString
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-@Entity(name = "t_blog_search_word")
+@Entity(name = TABLE_NAME_BLOG_POPULAR_SEARCH_WORD)
 public class BlogSearchWordEntity extends CreateAndModifyDateTime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +23,9 @@ public class BlogSearchWordEntity extends CreateAndModifyDateTime {
     private Long count;
 
     public void modifyCount(long count){
-        this.count = count;
+        if(this.count < count) {
+            this.count = count;
+        }
     }
 
     @Builder
