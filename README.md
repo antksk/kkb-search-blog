@@ -6,6 +6,7 @@ java -jar kakaobank.jar
 
 ```
 #### [kakaobank.jar 다운로드 링크](https://drive.google.com/file/d/1bzR-ULHVhSZcnbCjYg41hqKwUMy2vyAj/view?usp=share_link)
+#### [kakaobank.jar.zip 다운로드 링크](https://drive.google.com/file/d/1mQEo0W5zqQszHR8CPVNmLySjZF9Dap5s/view?usp=sharing)
 
 아래의 링크를 사용하여 서비스 접속 가능
 - [rest-docs 화면](http://localhost:8080/static/docs/index.html)
